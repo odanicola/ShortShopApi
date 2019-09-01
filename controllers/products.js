@@ -80,12 +80,6 @@ exports.search = function (req, res) {
         limit: limit
     }).then( result => {
         const rows = {
-            paginationMeta: {
-                currentPage: page,
-                currentPageSize: limit,
-                totalPages: Math.ceil(result.count / limit),
-                totalRecords: result.count
-            },
             rows: result.rows.map(item => {
                 return Object.assign({
                     product_id: item.product_id,
