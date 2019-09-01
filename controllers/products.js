@@ -25,7 +25,10 @@ exports.index = function(req, res){
                 return Object.assign({
                     product_id: item.product_id,
                     name: item.name,
-                    description: item.description.substring(0,lengthDesc)
+                    description: item.description.substring(0,lengthDesc),
+                    price: item.price,
+                    discounted_price: item.discounted_price,
+                    thumbnail: item.thumbnail
                 })
             })
         }

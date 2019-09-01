@@ -11,6 +11,15 @@ module.exports = (sequelize, Sequelize) => {
       description: {
         type: Sequelize.STRING
       },
+      price: {
+        type: Sequelize.STRING
+      },
+      discounted_price: {
+        type: Sequelize.STRING
+      },
+      thumbnail: {
+        type: Sequelize.STRING
+      }
     },{
       tableName: 'product',
       underscored: true
