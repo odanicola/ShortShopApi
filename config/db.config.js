@@ -1,6 +1,11 @@
 const env = require('./env.js');
  
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+const operatorsAliases = {
+  $like: Op.like,
+  $not: Op.not
+}
 const sequelize = new Sequelize(env.database, env.username, env.password, {
   host: env.host,
   dialect: env.dialect,
@@ -14,7 +19,8 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
     acquire: env.pool.acquire,
     idle: env.pool.idle
   },
-  timezone: '+07:00'
+  timezone: '+07:00',
+  operatorsAliases
 });
  
 const db = {};

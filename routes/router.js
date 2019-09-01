@@ -35,4 +35,6 @@ module.exports = function(app) {
     var productsRoute = require('../controllers/products')
         app.route('/products/')
             .get(productsRoute.index)
+        app.route('/products/search')
+            .get(productsRoute.search)
 }
