@@ -23,7 +23,15 @@ exports.detail = function(req, res) {
             }
         }
     ).then(result => {
-        res.send(result)
+        if (result) {
+            res.send(result)
+        } else {
+            res.send({
+                code: 404,
+                message: "Data not found!"
+            })
+        }
+        
     })
 }
 
@@ -41,18 +49,42 @@ exports.inproduct = function(req, res) {
         }],
         raw: true
     }).then(result => {
-        m_categories.findOne({
-            attributes: ['department_id'],
-            where: {
-                category_id: result.category_id
-            }
-        }).then(resultCat => {
-            var rows = {
-                category_id: result.category_id,
-                department_id: resultCat.department_id,
-                name: result.name,
-            }
-            res.send(rows)
-        }) 
+        if (result) {
+            m_categories.findOne({
+                attributes: ['department_id'],
+                where: {
+                    category_id: result.category_id
+                }
+            }).then(resultCat => {
+                var rows = {
+                    category_id: result.category_id,
+                    department_id: resultCat.department_id,
+                    name: result.name,
+                }
+                res.send(rows)
+            }) 
+        } else {
+            res.send({
+                code: 404,
+                message: "Data not found!"
+            })
+        }
+    })
+}
+
+exports.indepartment = function(req, res) {
+    var data = req.params
+
+    m_department.findOne({
+        where: {
+            department_id: data.id
+        },include: [{
+            model: m_categories
+        }]
+    }).then(resultDept => {
+      var categories = resultDept.categories
+      res.send({
+          rows: categories
+      })
     })
 }

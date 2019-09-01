@@ -33,5 +33,6 @@ db.m_product.hasOne(db.m_product_category, { foreignKey: 'product_id'})
 db.m_product_category.belongsTo(db.m_categories, { as: 'category', foreignKey: 'category_id'})
 db.m_categories.hasMany(db.m_product_category, { as: 'product_category', foreignKey: 'category_id'})
 db.m_categories.hasMany(db.m_department, { foreignKey: 'department_id'})
+db.m_department.hasMany(db.m_categories, { foreignKey: 'department_id'} )
 
 module.exports = db;
