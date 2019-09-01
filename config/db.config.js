@@ -27,6 +27,7 @@ db.m_department        = require('../models/m_department.model.js')(sequelize, S
 db.m_categories        = require('../models/m_categories.model.js')(sequelize, Sequelize);
 db.m_product_category  = require('../models/m_product_category.model.js')(sequelize, Sequelize);
 db.m_product           = require('../models/m_product.model.js')(sequelize, Sequelize);
+db.m_attributes        = require('../models/m_attributes.model.js')(sequelize, Sequelize);
 
 //Relations
 db.m_product.hasOne(db.m_product_category, { foreignKey: 'product_id'})

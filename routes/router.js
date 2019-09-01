@@ -19,4 +19,11 @@ module.exports = function(app) {
             .get(categoriesRoute.inproduct)
         app.route('/categories/indepartment/:id')
             .get(categoriesRoute.indepartment)
+
+    //List Attributes
+    var attributesRoute = require('../controllers/attributes');
+        app.route('/attributes/')
+            .get(attributesRoute.index)
+        app.route('/attributes/:id')
+            .get(attributesRoute.detail)
 }
