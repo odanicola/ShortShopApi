@@ -14,7 +14,8 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER
       }
     },{
-      tableName: 'category'
+      tableName: 'category',
+      underscore: true
     });
     
     return m_categories;

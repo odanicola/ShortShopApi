@@ -25,5 +25,13 @@ db.sequelize = sequelize;
 //Models/tables
 db.m_department        = require('../models/m_department.model.js')(sequelize, Sequelize);
 db.m_categories        = require('../models/m_categories.model.js')(sequelize, Sequelize);
+db.m_product_category  = require('../models/m_product_category.model.js')(sequelize, Sequelize);
+db.m_product           = require('../models/m_product.model.js')(sequelize, Sequelize);
+
+//Relations
+db.m_product.hasOne(db.m_product_category, { foreignKey: 'product_id'})
+db.m_product_category.belongsTo(db.m_categories, { as: 'category', foreignKey: 'category_id'})
+db.m_categories.hasMany(db.m_product_category, { as: 'product_category', foreignKey: 'category_id'})
+db.m_categories.hasMany(db.m_department, { foreignKey: 'department_id'})
 
 module.exports = db;

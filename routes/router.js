@@ -27,4 +27,6 @@ module.exports = function(app) {
             .get(categoriesRoute.index)
         app.route('/categories/:id')
             .get(categoriesRoute.detail)
+        app.route('/categories/inproduct/:id')
+            .get(categoriesRoute.inproduct)
 }
