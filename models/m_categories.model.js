@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-    const m_department = sequelize.define('department', {
-      department_id: {
+    const m_categories = sequelize.define('category', {
+      category_id: {
         type: Sequelize.INTEGER,
         primaryKey: true
       },
@@ -9,11 +9,14 @@ module.exports = (sequelize, Sequelize) => {
       },
       description: {
         type: Sequelize.STRING
+      },
+      department_id: {
+        type: Sequelize.INTEGER
       }
     },{
-      tableName: 'department'
+      tableName: 'category'
     });
     
-    return m_department;
+    return m_categories;
   }
   

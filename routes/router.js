@@ -18,4 +18,13 @@ module.exports = function(app) {
     var departmentRoute = require('../controllers/department');
         app.route('/department/')
             .get(departmentRoute.index)
+        app.route('/department/:id')
+            .get(departmentRoute.detail)
+
+    // List Categories
+    var categoriesRoute = require('../controllers/categories');
+        app.route('/categories/')
+            .get(categoriesRoute.index)
+        app.route('/categories/:id')
+            .get(categoriesRoute.detail)
 }

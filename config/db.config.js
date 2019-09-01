@@ -24,5 +24,6 @@ db.sequelize = sequelize;
  
 //Models/tables
 db.m_department        = require('../models/m_department.model.js')(sequelize, Sequelize);
+db.m_categories        = require('../models/m_categories.model.js')(sequelize, Sequelize);
 
 module.exports = db;

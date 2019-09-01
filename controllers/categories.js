@@ -1,18 +1,21 @@
 'use strict';
 const db            = require('../config/db.config.js')
-const m_department     = db.m_department 
+const m_categories     = db.m_categories 
 exports.index = function(req, res){
-    m_department.findAll().then( result => {
-        res.send(result)
+    m_categories.findAll().then( result => {
+        var rows = {
+            'rows' : result
+        }
+        res.send(rows)
     })
 }
 
 exports.detail = function(req, res) {
     var data = req.params
-    m_department.findOne(
+    m_categories.findOne(
         {
             where: {
-                department_id : data.id
+                category_id : data.id
             }
         }
     ).then(result => {
