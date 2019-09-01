@@ -26,4 +26,8 @@ module.exports = function(app) {
             .get(attributesRoute.index)
         app.route('/attributes/:id')
             .get(attributesRoute.detail)
+        app.route('/attributes/values/:id')
+            .get(attributesRoute.values)
+        app.route('/attributes/inproduct/:id')
+            .get(attributesRoute.inproduct)
 }
