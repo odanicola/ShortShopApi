@@ -30,4 +30,9 @@ module.exports = function(app) {
             .get(attributesRoute.values)
         app.route('/attributes/inproduct/:id')
             .get(attributesRoute.inproduct)
+
+    // List Products
+    var productsRoute = require('../controllers/products')
+        app.route('/products/')
+            .get(productsRoute.index)
 }

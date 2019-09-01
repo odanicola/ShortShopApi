@@ -1,0 +1,48 @@
+'use strict';
+const db            = require('../config/db.config.js')
+const m_product     = db.m_product 
+exports.index = function(req, res){
+    const page  = req.query.page || 1
+    const pageSize = req.query.limit || 10
+    const description_length = req.query.description_length || 200
+    
+    const offset        = parseInt((page-1) * pageSize)
+    const limit         = parseInt(offset + pageSize)
+    const lengthDesc    = parseInt(description_length)
+
+    m_product.findAndCountAll({
+        offset: offset,
+        limit: limit
+    }).then( result => {
+        const rows = {
+            paginationMeta: {
+                currentPage: page,
+                currentPageSize: limit,
+                totalPages: Math.ceil(result.count / limit),
+                totalRecords: result.count
+            },
+            rows: result.rows.map(item => {
+                return Object.assign({
+                    product_id: item.product_id,
+                    name: item.name,
+                    description: item.description.substring(0,lengthDesc)
+                })
+            })
+        }
+        
+        res.send(rows)
+    })
+}
+
+exports.detail = function(req, res) {
+    var data = req.params
+    m_department.findOne(
+        {
+            where: {
+                department_id : data.id
+            }
+        }
+    ).then(result => {
+        res.send(result)
+    })
+}

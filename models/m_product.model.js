@@ -1,3 +1,4 @@
+const sequelizePaginate = require('sequelize-paginate')
 module.exports = (sequelize, Sequelize) => {
     const m_product = sequelize.define('product', {
       product_id: {
