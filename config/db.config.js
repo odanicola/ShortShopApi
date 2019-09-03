@@ -36,14 +36,16 @@ db.m_product_category  = require('../models/m_product_category.model.js')(sequel
 db.m_product_attribute = require('../models/m_product_attribute.model.js')(sequelize, Sequelize);
 db.m_attributes        = require('../models/m_attributes.model.js')(sequelize, Sequelize);
 db.m_attribute_value   = require('../models/m_attribute_value.model.js')(sequelize, Sequelize);
+db.m_reviews           = require('../models/m_reviews.model.js')(sequelize, Sequelize);
 
 //Relations
 db.m_product.hasOne(db.m_product_category, { foreignKey: 'product_id'})
 db.m_product.hasMany(db.m_product_attribute, { foreignKey: 'product_id'})
+db.m_product.hasMany(db.m_reviews, { foreignKey: 'product_id'})
 db.m_product_category.belongsTo(db.m_categories, { as: 'category', foreignKey: 'category_id'})
 db.m_product_attribute.belongsTo(db.m_attribute_value, { as: 'attribute_value',  foreignKey: 'attribute_value_id'})
 db.m_categories.hasMany(db.m_product_category, { as: 'product_category', foreignKey: 'category_id'})
-db.m_categories.hasMany(db.m_department, { foreignKey: 'department_id'})
+db.m_categories.belongsTo(db.m_department, { as:'department', foreignKey: 'department_id'})
 db.m_department.hasMany(db.m_categories, { foreignKey: 'department_id'} )
 db.m_attributes.hasMany(db.m_attribute_value, { as: 'attribute_value', foreignKey: 'attribute_id'})
 db.m_attribute_value.belongsTo(db.m_attributes, { foreignKey: 'attribute_id'})

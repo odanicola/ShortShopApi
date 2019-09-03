@@ -37,4 +37,12 @@ module.exports = function(app) {
             .get(productsRoute.index)
         app.route('/products/search')
             .get(productsRoute.search)
+        app.route('/products/:id')
+            .get(productsRoute.detail)
+        app.route('/products/incategory/:id')
+            .get(productsRoute.category)
+        app.route('/products/indepartment/:id')
+            .get(productsRoute.department)
+        app.route('/products/:id/reviews')
+            .get(productsRoute.reviews)
 }

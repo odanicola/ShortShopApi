@@ -17,7 +17,16 @@ module.exports = (sequelize, Sequelize) => {
       discounted_price: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
+      image_2: {
+        type: Sequelize.STRING
+      },
       thumbnail: {
+        type: Sequelize.STRING
+      },
+      display: {
         type: Sequelize.STRING
       }
     },{
