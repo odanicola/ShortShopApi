@@ -39,7 +39,7 @@ exports.index = function(req, res){
             })
         }
         
-        res.send(rows)
+        res.status(200).send(rows)
     })
 }
 
@@ -56,7 +56,7 @@ exports.detail = function(req, res) {
         }
     ).then(result => {
         result.description = result.description.substring(0, lengthDesc)
-        res.send(result)
+        res.status(200).send(result)
     })
 }
 
@@ -94,7 +94,7 @@ exports.category = function (req, res) {
                 })
             })
         }
-        res.send(rows)
+        res.status(200).send(rows)
     })
 }
 
@@ -142,7 +142,7 @@ exports.department = function (req, res) {
             })
         }
         
-        res.send(rows)
+        res.status(200).send(rows)
     })
 }
 
@@ -188,7 +188,7 @@ exports.search = function (req, res) {
             })
         }
         
-        res.send(rows)
+        res.status(200).send(rows)
     })
 }
 
@@ -214,6 +214,44 @@ exports.reviews = function (req, res) {
                 created_on: new Date(item.created_on).toISOString().replace(/T/, ' ').replace(/\..+/, '') 
             })
         })
-        res.send(data)        
+        res.status(200).send(data)        
     })
+}
+
+exports.postReview = function (req, res) {
+    const id = req.params.id
+    const data = req.body
+    const now = new Date().toLocaleString("en-US", {timeZone: "Asia/Jakarta"})
+    const date = dateFormat(now, "yyyy-mm-dd HH:MM:ss")
+
+    m_reviews.create({
+        customer_id: '1',
+        product_id: data.product_id,
+        review: data.review,
+        rating: data.rating,
+        created_on: date
+    }).then(result => {
+        if (result)  {
+            m_product.findOne({
+                attributes: ['name'],
+                where: {
+                    product_id: result.product_id,
+                }
+            }).then(rProduct => {
+                const rows = {
+                    name: rProduct.name,
+                    review: result.review,
+                    rating: result.rating,
+                    created_on: result.created_on
+                }
+
+                res.status(201).send(rows)
+            })
+        } else {
+            res.status(500).send('Error while saving the data!')
+        }
+    }).catch(error => {
+        res.status(500).json(error)
+    })
+    
 }

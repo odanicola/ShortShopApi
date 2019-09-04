@@ -45,4 +45,6 @@ module.exports = function(app) {
             .get(productsRoute.department)
         app.route('/products/:id/reviews')
             .get(productsRoute.reviews)
+        app.route('/products/:id/reviews')
+            .post(productsRoute.postReview)
 }

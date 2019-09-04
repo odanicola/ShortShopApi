@@ -8,11 +8,24 @@ const operatorsAliases = {
 }
 const sequelize = new Sequelize(env.database, env.username, env.password, {
   host: env.host,
-  dialect: env.dialect,
-  // operatorsAliases: false,
   define: {
+    charset: 'utf8mb4',
   	timestamps: false
   },
+  dialect: env.dialect,
+  dialectOptions: {
+      collate: 'utf8mb4_general_ci',
+      useUTC: false, //for reading from database
+      dateStrings: true,
+      typeCast: function (field, next) { // for reading from database
+        if (field.type === 'DATETIME') {
+          return field.string()
+        }
+          return next()
+      },
+      timezone: '+07:00',
+  },
+  // operatorsAliases: false,
   pool: {
     max: env.max,
     min: env.pool.min,
