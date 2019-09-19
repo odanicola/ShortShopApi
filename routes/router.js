@@ -47,4 +47,9 @@ module.exports = function(app) {
             .get(productsRoute.reviews)
         app.route('/products/:id/reviews')
             .post(productsRoute.postReview)
+
+    // List Customer
+    var customerRoute = require('../controllers/customer')
+        app.route('/customers/')
+            .post(customerRoute.register)
 }

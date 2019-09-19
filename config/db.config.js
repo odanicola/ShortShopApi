@@ -50,6 +50,7 @@ db.m_product_attribute = require('../models/m_product_attribute.model.js')(seque
 db.m_attributes        = require('../models/m_attributes.model.js')(sequelize, Sequelize);
 db.m_attribute_value   = require('../models/m_attribute_value.model.js')(sequelize, Sequelize);
 db.m_reviews           = require('../models/m_reviews.model.js')(sequelize, Sequelize);
+db.m_customers          = require('../models/m_customers.model.js')(sequelize, Sequelize);
 
 //Relations
 db.m_product.hasOne(db.m_product_category, { foreignKey: 'product_id'})

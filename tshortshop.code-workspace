@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/odanicola/Documents/workspaces/nodejs/restapi"
 		}
 	]
 }
