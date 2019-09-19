@@ -1,13 +1,18 @@
-var expect  = require("chai").expect;
-var request = require("request");
+var chai  = require("chai");
+var chaiHttp = require("chai-http")
+var app = require('../app')
 
-describe("Short Shop API", function() {
-    describe("Get All Department", function() {
-      var url = "http://localhost:3000/departments";
-  
-      it("returns status 200", function() {
-        request(url, function(error, response, body) {
-          expect(response.statusCode).to.equal(200);
+chai.use(chaiHttp);
+chai.should();
+
+describe("Short Shop API", () => {
+    describe("Get All Department", () => {
+      it("returns status 200", (done) => {
+        chai.request(app)
+        .get('/')
+        .end((err, res) => {
+            res.should.have.status(200);
+            done();
         });
       });
   
