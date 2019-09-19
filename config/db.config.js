@@ -23,7 +23,7 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
         }
           return next()
       },
-      timezone: '+07:00',
+      timezone: 'Etc/GMT-7',
   },
   // operatorsAliases: false,
   pool: {
@@ -32,8 +32,9 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
     acquire: env.pool.acquire,
     idle: env.pool.idle
   },
-  timezone: '+07:00',
-  operatorsAliases
+  timezone: 'Etc/GMT-7',
+  operatorsAliases,
+  logging: false
 });
  
 const db = {};
