@@ -52,4 +52,6 @@ module.exports = function(app) {
     var customerRoute = require('../controllers/customer')
         app.route('/customers/')
             .post(customerRoute.register)
+        app.route('/customers/login')
+            .post(customerRoute.login)
 }
