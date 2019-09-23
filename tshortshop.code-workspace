@@ -4,7 +4,10 @@
 			"path": "."
 		},
 		{
-			"path": "/Users/odanicola/Documents/workspaces/nodejs/restapi"
+			"path": "/Users/odanicola/Documents/workspaces/api/restapi"
 		}
-	]
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
 }
